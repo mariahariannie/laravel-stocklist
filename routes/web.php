@@ -24,9 +24,3 @@ Route::get('/update', function () {
 });
 
 Route::resource('stocklist', ItemController::class);
-
-Route::post('/index', [ItemController::class, 'index']);
-Route::post('/create', [ItemController::class, 'create']);
-Route::post('/create', [ItemController::class, 'store']);
-Route::post('/read', [ItemController::class, 'read']);
-Route::post('/update', [ItemController::class, 'update']);
