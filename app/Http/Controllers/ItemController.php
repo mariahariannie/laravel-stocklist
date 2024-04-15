@@ -54,19 +54,19 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($item_id)
+    public function show($id)
     {
-        $item =Item::findOrFail($item_id);
+        $item =Item::findOrFail($id);
         return view('stocklist.read', ['item' => $item]);
-        
+        //return view('stocklist.read', compact('stocklist', 'item_id'));    
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($item_id)
+    public function edit($id)
     {
-        $item = Item::find($item_id);
+        $item = Item::find($id);
         return view('stocklist.update', ['item' => $item, 'is_default']);
         
     }
@@ -74,9 +74,9 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $item_id)
+    public function update(Request $request, $id)
     {
-        $item = Item::findOrFail($item_id);
+        $item = Item::findOrFail($id);
         $validator = Validator::make($request->all(),[
             'item_name'     => 'required|string|max:50',
             'item_desc'     => 'required|string|max:200',
@@ -87,7 +87,7 @@ class ItemController extends Controller
             return redirect()->back()->with('errors', $validator->errors()->all());
         }
 
-        $item = Item::find($item_id);
+        $item = Item::find($id);
         $item->item_name = $request->item_name;
         $item->item_desc = $request->item_desc;
         $item->item_price = $request->item_price;
@@ -99,9 +99,9 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($item_id)
+    public function destroy($id)
     {
-        $item = Item::findOrFail($item_id);
+        $item = Item::findOrFail($id);
 
         $item->delete();;
 

@@ -34,7 +34,7 @@
         </tr>
         @foreach($item as $row)
             <tr>
-                <td>{{$row['item_id']}}</td>
+                <td>{{$row['id']}}</td>
                 <td>{{$row['item_name']}}</td>
                 <td>{{$row['item_desc']}}</td>
                 <td>{{$row['item_price']}}</td>
@@ -42,15 +42,15 @@
                 <td>{{$row['updated_at']}}</td>
                 <td>       
                     <form action="" method="POST">
-                        <a href="{{route('stocklist.show', $row['item_id'])}}" title="show">
+                        <a href="{{route('stocklist.show', $row['id'])}}" title="show">
                             <i class="fas fa-eye text-success  fa-lg"></i>
                         </a>
                         
-                        <a href="{{route('stocklist.edit', $row['item_id'])}}">
+                        <a href="{{route('stocklist.edit', $row['id'])}}">
                             <i class="fas fa-edit  fa-lg"></i>
                         </a>
                     
-                        <a href="{{route('stocklist.destroy', $row['item_id'])}}" title="delete" method="DELETE">
+                        <a href="{{route('stocklist.destroy', $row['id'])}}" title="delete" method="DELETE">
                                 <i class="fas fa-trash fa-lg text-danger"></i>
                         </a>
                     </form>              
