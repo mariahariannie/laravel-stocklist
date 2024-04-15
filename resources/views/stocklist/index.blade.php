@@ -50,9 +50,11 @@
                             <i class="fas fa-edit  fa-lg"></i>
                         </a>
                     
-                        <a href="{{route('stocklist.destroy', $row['id'])}}" title="delete" method="DELETE">
-                                <i class="fas fa-trash fa-lg text-danger"></i>
-                        </a>
+                        <form action="{{route('stocklist.destroy', $row['id'])}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="fas fa-trash fa-lg text-danger"></button>
+                        </form>
                     </form>              
                 </td>
             </tr>

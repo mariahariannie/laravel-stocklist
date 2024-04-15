@@ -20,13 +20,13 @@
             <strong>Error!</strong>
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>Required</li>
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
 
-    <form action="{{route('stocklist.update', $id)}}" method="POST">
+    <form action="{{route('stocklist.update', $item->id)}}" method="POST">
         @csrf
         @method('PUT')
 
@@ -34,20 +34,20 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name</strong>
-                    <input type="text" name="name" value="" class="form-control" placeholder="New name of item">
+                    <input type="text" name="item_name" value="" class="form-control" placeholder="New name of item">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Description</strong>
-                    <textarea class="form-control" style="height:50px" name="description"
+                    <textarea class="form-control" style="height:50px" name="item_desc"
                         placeholder="New description of item"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Price</strong>
-                    <input type="number" name="price" class="form-control" placeholder="New price of item"
+                    <input type="number" name="item_price" class="form-control" placeholder="New price of item"
                         value="">
                 </div>
             </div>

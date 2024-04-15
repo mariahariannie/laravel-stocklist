@@ -57,8 +57,7 @@ class ItemController extends Controller
     public function show($id)
     {
         $item =Item::findOrFail($id);
-        return view('stocklist.read', ['item' => $item]);
-        //return view('stocklist.read', compact('stocklist', 'item_id'));    
+        return view('stocklist.read', ['item' => $item]);   
     }
 
     /**
@@ -66,9 +65,8 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        $item = Item::find($id);
-        return view('stocklist.update', ['item' => $item, 'is_default']);
-        
+        $item = Item::findOrFail($id);
+        return view('stocklist.update', ['item' => $item]);
     }
 
     /**
@@ -77,6 +75,7 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         $item = Item::findOrFail($id);
+        //$item->update($request->all());
         $validator = Validator::make($request->all(),[
             'item_name'     => 'required|string|max:50',
             'item_desc'     => 'required|string|max:200',
@@ -93,7 +92,9 @@ class ItemController extends Controller
         $item->item_price = $request->item_price;
         $item->save();
 
-        return redirect()->back()->with('success', 'Item updated successfully.');
+        return redirect()->route('stocklist.index')
+            ->with('success', 'Item updated successfully.');
+        //return redirect()->back()->with('success', 'Item updated successfully.');
     }
 
     /**
@@ -105,6 +106,8 @@ class ItemController extends Controller
 
         $item->delete();;
 
-        return redirect()->back()->with('success', 'Item deleted successfully.');
+        //return redirect()->back()->with('success', 'Item deleted successfully.');
+        return redirect()->route('stocklist.index')
+            ->with('success', 'Item deleted successfully.');
     }
 }
